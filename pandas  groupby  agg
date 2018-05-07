@@ -1,0 +1,44 @@
+ df = pd.DataFrame({'tip': [16.99, 10.34, 23.68, 23.68, 24.59],
+...                    'sex': ['Female', 'Male', 'Male', 'Male', 'Female']})
+
+df
+      sex    tip
+0  Female  16.99
+1    Male  10.34
+2    Male  23.68
+3    Male  23.68
+4  Female  24.59
+
+
+temp=df.groupby('sex').agg({'sex':['count'],'tip':['sum']}).reset_index()
+
+ temp
+      sex    tip   sex
+             sum count
+0  Female  41.58     2
+1    Male  57.70     3
+
+temp.columns=['sex','tip','sexCnt']
+
+temp
+      sex    tip  sexCnt
+0  Female  41.58       2
+1    Male  57.70       3
+
+
+I want to get this result
+ temp=temp[['sex','sexCnt','tip']]
+ 
+ temp
+      sex  sexCnt    tip
+0  Female       2  41.58
+1    Male       3  57.70
+
+ but the order of temp.columns=['sex','tip','sexCnt'] 'tip' and 'sexCnt' will change 
+ How can we ensure that his order is not changed?
+ 
+ 
+ 
+
+
+
